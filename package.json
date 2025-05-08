@@ -1,14 +1,15 @@
 {
-  "homepage": "http://lollosxvm.github.io/React",
-  "name": "react",
+  "homepage": "https://lollosxvm.github.io/projectWork",
+  "name": "projectWork",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "build": "vite build",
+    "publish": "npm install && npm run build && npm run deploy",
     "lint": "eslint .",
     "preview": "vite preview"
   },
