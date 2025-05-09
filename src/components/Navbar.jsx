@@ -2,10 +2,11 @@ import './Navbar.css'
 import Link from './Link'
 
 function Navabar() {
-  const img = 'vite'
   return (
     <>
-      <img style={{ height: '300px' }} src={`./${img}.svg`} alt="img" />
+      <div className="bg-red-500 text-white p-4">
+        Questo è un div di prova rosso
+      </div>
       <ul>
         <li>
           <Link>qwerty</Link>
@@ -20,7 +21,7 @@ function Navabar() {
           <Link>sop</Link>
         </li>
         <li>
-          <Link>CiaoCiao</Link>
+          <Link>CiaoCiaone</Link>
         </li>
       </ul>
     </>
