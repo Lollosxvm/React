@@ -1,4 +1,4 @@
-function CardForm(addCity) {
+function CardForm({ addCity }) {
   const handleClick = () => {
     const city = {
       id: 99,

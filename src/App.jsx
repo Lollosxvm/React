@@ -1,17 +1,15 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Card from './components/Card'
-import CardForm from './components/CardForm'
-import Example from './components/Example'
-
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
+import Card from './components/Card';
+import CardForm from './components/CardForm';
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   const addCity = (city) => {
-    setCities([...cities, city])
-  }
+    setCities([...cities, city]);
+  };
 
   const [cities, setCities] = useState([
     {
@@ -59,7 +57,7 @@ function App() {
         'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmlvJTIwZGUlMjBqYW5lcmlvfGVufDB8fDB8fHww',
       isVisited: true,
     },
-  ])
+  ]);
 
   return (
     <>
@@ -87,14 +85,13 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
