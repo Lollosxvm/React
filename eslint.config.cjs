@@ -24,6 +24,8 @@ module.exports = [
     },
     rules: {
       'import/newline-after-import': 'off',
+      'import/no-unresolved': ['error', { ignore: ['\\.svg$'] }],
+      'import/no-unresolved': 'error',
       ...js.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
@@ -43,7 +45,7 @@ module.exports = [
           ],
           pathGroups: [{ pattern: '*.css', group: 'index', position: 'after' }],
           pathGroupsExcludedImportTypes: ['builtin'],
-          'newlines-between': 'always',
+          'newlines-between': 'never',
           alphabetize: { order: 'asc', caseInsensitive: true },
         },
       ],

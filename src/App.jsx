@@ -2,15 +2,13 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import './components/Navbar'
-import Navbar from './components/Navbar'
+
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <Navbar></Navbar>
-      <div>
+      <div className="flex items-center justify-between p-4">
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
