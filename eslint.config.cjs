@@ -1,13 +1,13 @@
-import js from '@eslint/js'
-import importPlugin from 'eslint-plugin-import'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import globals from 'globals'
+const js = require('@eslint/js')
+const importPlugin = require('eslint-plugin-import')
+const reactHooks = require('eslint-plugin-react-hooks')
+const reactRefresh = require('eslint-plugin-react-refresh')
+const globals = require('globals')
 
-export default [
-  { ignores: ['dist'] },
+module.exports = [
+  { ignores: ['dist/**', '**/eslint.config.cjs', '**/*.config.cjs'] },
   {
-    files: ['**/*.{js,jsx}'],
+    files: ['src/**/*.{js,jsx}'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -35,18 +35,12 @@ export default [
         'error',
         {
           groups: [
-            'builtin', // es. fs, path
-            'external', // es. react, lodash
-            'internal', // es. @/components
+            'builtin',
+            'external',
+            'internal',
             ['parent', 'sibling', 'index'],
           ],
-          pathGroups: [
-            {
-              pattern: '*.css',
-              group: 'index',
-              position: 'after',
-            },
-          ],
+          pathGroups: [{ pattern: '*.css', group: 'index', position: 'after' }],
           pathGroupsExcludedImportTypes: ['builtin'],
           'newlines-between': 'always',
           alphabetize: { order: 'asc', caseInsensitive: true },
