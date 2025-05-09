@@ -1,11 +1,11 @@
 // .prettierrc.js
 module.exports = {
-  // Disabilito i punti e virgola
-  semi: false,
+  // Riabilito i punti e virgola
+  semi: true,
 
   // Preferisco le virgolette singole
   singleQuote: true,
 
   // Virgola finale dove supportata da ES5
-  trailingComma: "es5",
-};
+  trailingComma: 'es5',
+}
