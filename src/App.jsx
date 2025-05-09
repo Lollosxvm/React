@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+// import reactLogo from './assets/react.svg';
+// import viteLogo from '/vite.svg';
 import './App.css';
 import Card from './components/Card';
 import CardForm from './components/CardForm';
@@ -63,28 +63,26 @@ function App() {
     <>
       <CardForm addCity={addCity}></CardForm>
       <div className="grid grid-cols-4 gap-5">
-        {cities
-          .filter((city) => city.isVisited)
-          .map((city) => (
-            <Card
-              key={city.id}
-              title={city.name}
-              isVisited={city.isVisited}
-              imgURL={city.imgURL}
-            >
-              {city.description}
-            </Card>
-          ))}
+        {cities.map((city) => (
+          <Card
+            key={city.id}
+            title={city.name}
+            isVisited={city.isVisited}
+            imgURL={city.imgURL}
+          >
+            {city.description}
+          </Card>
+        ))}
       </div>
 
-      <div className="flex items-center justify-between p-4">
+      {/* <div className="flex items-center justify-between p-4">
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
-      </div>
+      </div> */}
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}

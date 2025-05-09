@@ -1,23 +1,84 @@
+import { useState } from 'react';
+
 function CardForm({ addCity }) {
-  const handleClick = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    imgURL: '',
+    isVisited: false,
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    const inputValue = type == 'checkbox' ? checked : value;
+    setFormData({
+      ...formData,
+      [name]: inputValue,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     const city = {
-      id: 99,
-      name: 'London',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis mollitia minus amet voluptates aspernatur.',
-      imgURL:
-        'https://images.unsplash.com/photo-1706606992618-9108da774e75?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bG9uZG98ZW58MHx8MHx8fDA%3D',
-      isVisited: true,
+      id: Math.random(),
+      name: formData.name,
+      description: formData.description,
+      imgURL: formData.imgURL,
+      isVisited: formData.isVisited,
     };
     addCity(city);
   };
+
   return (
-    <div className="flex flex-col gap-3 w-80 mb-10">
-      <input type="text"></input>
-      <input type="text"></input>
-      <input type="text"></input>
-      <button onClick={handleClick}>Aggiungi Card</button>
-    </div>
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-3 w-80 mb-10 bg-zinc-300 p-5 rounded-lg"
+    >
+      <div className="flex flex-col">
+        <label className="text-black">Nome città</label>
+        <input
+          className="form-input bg-zinc-800 text-white"
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleInputChange}
+        ></input>
+      </div>
+      <div className="flex flex-col">
+        <label className="text-black">Descrizione</label>
+        <textarea
+          className="form-input bg-zinc-800 text-white"
+          name="description"
+          value={formData.description}
+          onChange={handleInputChange}
+        ></textarea>
+      </div>
+      <div className="flex flex-col">
+        <label className="text-black">Immagine</label>
+        <input
+          className="form-input bg-zinc-800 text-white"
+          type="text"
+          name="imgURL"
+          value={formData.imgURL}
+          onChange={handleInputChange}
+        ></input>
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-black">Visitata?</label>
+        <input
+          type="checkbox"
+          name="isVisited"
+          checked={formData.isVisited}
+          onChange={handleInputChange}
+        ></input>
+      </div>
+
+      <button className="bg-amber-300" type="submit">
+        Aggiungi Card
+      </button>
+    </form>
   );
 }
 
