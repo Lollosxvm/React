@@ -15,6 +15,8 @@ function CardForm({ addCity }) {
       ...formData,
       [name]: inputValue,
     });
+    console.log(e.target.name);
+    console.log(formData);
   };
 
   const handleSubmit = (e) => {
