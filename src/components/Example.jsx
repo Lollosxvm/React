@@ -1,8 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { ProvaContext } from '../stores/ProvaContext';
 
 function Example() {
-  const [count, setCount] = useState(0);
-  const [data, setData] = useState(null);
+  const { count, setCount } = useContext(ProvaContext);
+
+  // const { count, setCount } = useContext(ProvaContext);
+  // const [count, setCount] = useState(0);
+  // const [data, setData] = useState(null);
 
   // Definizione dell'effetto
   // useEffect(() => {

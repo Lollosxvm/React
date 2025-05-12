@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { ProvaContext } from '../stores/ProvaContext';
 
 function CardForm({ addCity }) {
   const [formData, setFormData] = useState({
@@ -32,6 +33,8 @@ function CardForm({ addCity }) {
     addCity(city);
   };
 
+  const { count } = useContext(ProvaContext);
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -53,7 +56,7 @@ function CardForm({ addCity }) {
       </div>
       <div className="flex flex-col">
         <label htmlFor="description" className="text-black">
-          Descrizione
+          Descrizione {count}
         </label>
         <textarea
           autoComplete="off"

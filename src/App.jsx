@@ -1,10 +1,11 @@
-import { useState, useEffect, useReducer } from 'react';
+import { useState, useReducer, useContext } from 'react';
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
 import './App.css';
 import Card from './components/Card';
 import CardForm from './components/CardForm';
 import Example from './components/Example';
+import { ProvaContext } from './stores/ProvaContext';
 
 function formReducer(state, action) {
   switch (action.type) {
@@ -18,7 +19,7 @@ function formReducer(state, action) {
 }
 
 function App() {
-  // const [count, setCount] = useState(0);
+  const [count, setCount] = useState(0);
   // const [data, setData] = useState([]);
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
@@ -93,7 +94,7 @@ function App() {
   // }, [count]);
 
   return (
-    <>
+    <ProvaContext.Provider value={{ count, setCount }}>
       <Example></Example>
       <CardForm addCity={addCity}></CardForm>
       <div className="grid grid-cols-4 gap-5">
@@ -154,7 +155,7 @@ function App() {
           Invia
         </button>
       </form>
-    </>
+    </ProvaContext.Provider>
   );
 }
 
