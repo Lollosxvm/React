@@ -38,8 +38,12 @@ function CardForm({ addCity }) {
       className="flex flex-col gap-3 w-80 mb-10 bg-zinc-300 p-5 rounded-lg"
     >
       <div className="flex flex-col">
-        <label className="text-black">Nome città</label>
+        <label htmlFor="name" className="text-black">
+          Nome città
+        </label>
         <input
+          autoComplete="off"
+          id="name"
           className="form-input bg-zinc-800 text-white"
           type="text"
           name="name"
@@ -48,8 +52,12 @@ function CardForm({ addCity }) {
         ></input>
       </div>
       <div className="flex flex-col">
-        <label className="text-black">Descrizione</label>
+        <label htmlFor="description" className="text-black">
+          Descrizione
+        </label>
         <textarea
+          autoComplete="off"
+          id="description"
           className="form-input bg-zinc-800 text-white"
           name="description"
           value={formData.description}
@@ -57,8 +65,12 @@ function CardForm({ addCity }) {
         ></textarea>
       </div>
       <div className="flex flex-col">
-        <label className="text-black">Immagine</label>
+        <label htmlFor="imgURL" className="text-black">
+          Immagine
+        </label>
         <input
+          autoComplete="off"
+          id="imgURL"
           className="form-input bg-zinc-800 text-white"
           type="text"
           name="imgURL"
@@ -68,8 +80,11 @@ function CardForm({ addCity }) {
       </div>
 
       <div className="flex flex-col">
-        <label className="text-black">Visitata?</label>
+        <label htmlFor="isVisited" className="text-black">
+          Visitata?
+        </label>
         <input
+          id="isVisited"
           type="checkbox"
           name="isVisited"
           checked={formData.isVisited}

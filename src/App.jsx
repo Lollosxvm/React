@@ -1,11 +1,44 @@
-import { useState } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 // import reactLogo from './assets/react.svg';
 // import viteLogo from '/vite.svg';
 import './App.css';
 import Card from './components/Card';
 import CardForm from './components/CardForm';
+import Example from './components/Example';
+
+function formReducer(state, action) {
+  switch (action.type) {
+    case 'CHANGE_FIELD':
+      return { ...state, [action.field]: action.value };
+    case 'RESET_FORM':
+      return { name: '', email: '' };
+    default:
+      return state;
+  }
+}
+
 function App() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
+  // const [data, setData] = useState([]);
+
+  const [formState, dispatchFormState] = useReducer(formReducer, {
+    name: '',
+    email: '',
+  });
+
+  const handleFieldChange = (field, value) => {
+    dispatchFormState({ type: 'CHANGE_FIELD', field, value });
+  };
+
+  const resetForm = (e) => {
+    e.preventDefault();
+    dispatchFormState({ type: 'RESET_FORM' });
+  };
+
+  const sendForm = (e) => {
+    e.preventDefault();
+    console.log(formState);
+  };
 
   const addCity = (city) => {
     setCities([...cities, city]);
@@ -48,19 +81,20 @@ function App() {
         'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3lkbmV5fGVufDB8fDB8fHww',
       isVisited: false,
     },
-    {
-      id: 4,
-      name: 'Rio de Janeiro',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis mollitia minus amet voluptates aspernatur.',
-      imgURL:
-        'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmlvJTIwZGUlMjBqYW5lcmlvfGVufDB8fDB8fHww',
-      isVisited: true,
-    },
   ]);
+
+  // useEffect(() => {
+  //   fetch('https://jsonplaceholder.typicode.com/posts')
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setData(data);
+  //       //console.log(data);
+  //     });
+  // }, [count]);
 
   return (
     <>
+      <Example></Example>
       <CardForm addCity={addCity}></CardForm>
       <div className="grid grid-cols-4 gap-5">
         {cities.map((city) => (
@@ -74,20 +108,52 @@ function App() {
           </Card>
         ))}
       </div>
-
-      {/* <div className="flex items-center justify-between p-4">
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      {/* <div className="grid grid-cols-4 gap-5">
+        {data.map((item) => (
+          <div className="bg-slate-400 rounded-lg p-3" key={item.id}>
+            <p className="text-red-500 mb-1">userid: {item.userId}</p>
+            <h2 className="text-xl mb-3">title: {item.title}</h2>
+            <p className="text-gray-800">body: {item.body}</p>
+          </div>
+        ))}
       </div> */}
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+      <form className="flex flex-col gap-3 w-80 mt-10 mb-10 bg-zinc-300 p-5 rounded-lg">
+        <div className="flex flex-col">
+          <label className="text-black" htmlFor="name">
+            Nome:
+          </label>
+          <input
+            className="form-input bg-zinc-800 text-white"
+            autoComplete="off"
+            type="text"
+            id="name"
+            name="name"
+            value={formState.name}
+            onChange={(e) => handleFieldChange('name', e.target.value)}
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <label className="text-black" htmlFor="email">
+            Email:
+          </label>
+          <input
+            className="form-input bg-zinc-800 text-white"
+            autoComplete="off"
+            type="email"
+            id="email"
+            name="email"
+            value={formState.email}
+            onChange={(e) => handleFieldChange('email', e.target.value)}
+          />
+        </div>
+        <button className="text-red-400" onClick={resetForm}>
+          Resetta
         </button>
-      </div>
+        <button className="text-green-400" onClick={sendForm}>
+          Invia
+        </button>
+      </form>
     </>
   );
 }
